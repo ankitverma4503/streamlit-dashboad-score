@@ -2,4 +2,3 @@ openpyxl
 plotly
 streamlit
 pandas
-
