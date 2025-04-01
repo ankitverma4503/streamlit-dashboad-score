@@ -1,5 +1,5 @@
-pandas
-streamlit
-matplotlib
 openpyxl
 plotly
+streamlit
+pandas
+
