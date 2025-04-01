@@ -1,10 +1,23 @@
 import streamlit as st
 import pandas as pd
+import requests
+from io import BytesIO
 import plotly.express as px
 
-# Read the Excel file
-file_path = r'C:\Users\QS339TU\OneDrive - EY\Desktop\ok\Assesment scores.xlsx'
-df = pd.read_excel(file_path, sheet_name="Overall Team's Score")
+url = "https://raw.githubusercontent.com/ankitverma4503/streamlit-dashboad-score/main/Assesment%20scores.xlsx"
+
+# Fetch the file
+response = requests.get(url)
+
+# Check if the request was successful
+if response.status_code == 200:
+    # Load the Excel file from the content of the response
+    file_data = BytesIO(response.content)
+    
+    # Read the Excel file into a pandas DataFrame
+    df = pd.read_excel(file_data, sheet_name="Overall Team's Score")
+else:
+    print("Failed to download the file.")
 
 # Clean up column names (remove whitespaces, special characters)
 df.columns = df.columns.str.strip()
